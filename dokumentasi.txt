@@ -1,0 +1,420 @@
+Nama : M Anwar Murtado
+DOKUMENTASI APLIKASI KALKULATOR BERBASIS WEB
+1. Pendahuluan
+
+Dokumen ini menjelaskan proses pembuatan aplikasi web kalkulator sederhana. Aplikasi ini dirancang untuk melakukan operasi aritmatika dasar (penjumlahan, pengurangan, perkalian, pembagian) melalui antarmuka berbasis web.
+2. Tujuan Aplikasi
+
+    Menyediakan kalkulator fungsional yang dapat diakses melalui browser web.
+    Memahami dasar-dasar pengembangan web (HTML, CSS, JavaScript) dalam konteks proyek praktis.
+    Membangun antarmuka pengguna yang intuitif dan responsif.
+
+3. Teknologi yang Digunakan
+
+    HTML5: Untuk struktur dasar dan elemen antarmuka (tombol, tampilan hasil).
+    CSS3: Untuk styling dan layout aplikasi (membuat tampilan menarik dan responsif).
+    JavaScript (Vanilla JS): Untuk logika inti kalkulator (menangani input, melakukan perhitungan, memperbarui tampilan).
+
+4. Struktur File Proyek
+
+Berikut adalah struktur file yang direkomendasikan untuk proyek ini, dengan nama root proyek calcProjek dan file CSS serta JavaScript dipisahkan ke dalam folder masing-masing:
+
+calcProjek/
+├── index.html
+├── style/
+│   └── style.css
+└── script/
+    └── script.js
+
+5. Proses Pembuatan
+5.1. Struktur HTML (index.html)
+
+File index.html adalah kerangka utama aplikasi. Ini berisi elemen-elemen berikut:
+
+    <!DOCTYPE html>: Deklarasi tipe dokumen HTML5.
+    <html lang="id">: Elemen root dengan bahasa Indonesia.
+    <head>: Berisi metadata seperti judul halaman (<title>), tautan ke file CSS (<link rel="stylesheet" href="style/style.css">), dan pengaturan viewport untuk responsivitas (<meta name="viewport" content="width=device-width, initial-scale=1.0">). Perhatikan perubahan pada href untuk menunjuk ke direktori style/.
+    <body>: Berisi konten yang terlihat oleh pengguna.
+        <div class="calculator">: Wadah utama untuk seluruh elemen kalkulator.
+            <input type="text" class="display" readonly>: Bidang input untuk menampilkan angka dan hasil. Atribut readonly mencegah pengguna mengetik langsung.
+            <div class="buttons">: Wadah untuk semua tombol kalkulator.
+                Tombol Angka (0-9): Masing-masing memiliki kelas number.
+                *Tombol Operator (+, -, , /): Masing-masing memiliki kelas operator.
+                Tombol Khusus (. , = , C , DEL):
+                    .: Titik desimal.
+                    =: Untuk menghitung hasil.
+                    C: Untuk menghapus semua input (Clear).
+                    DEL: Untuk menghapus karakter terakhir (Delete).
+        <script src="script/script.js"></script>: Tautan ke file JavaScript di akhir <body> agar elemen HTML dimuat terlebih dahulu. Perhatikan perubahan pada src untuk menunjuk ke direktori script/.
+
+5.2. Styling CSS (style/style.css)
+
+File style/style.css bertanggung jawab untuk mempercantik tampilan kalkulator. Beberapa poin penting dalam styling:
+
+    Reset CSS: Mengatur ulang margin, padding, dan box-sizing pada elemen universal (*) untuk konsistensi di berbagai browser.
+    body: Mengatur latar belakang, font, dan memposisikan kalkulator di tengah halaman (misalnya dengan Flexbox).
+    .calculator: Menentukan lebar, tinggi, warna latar belakang, border-radius, dan shadow untuk kotak kalkulator.
+    .display: Styling untuk area tampilan hasil, termasuk ukuran font, padding, dan warna teks.
+    .buttons: Menggunakan CSS Grid untuk mengatur tata letak tombol secara rapi dalam baris dan kolom.
+    button: Styling dasar untuk semua tombol (ukuran font, padding, border-radius, warna latar belakang, warna teks).
+    Efek Hover: Menambahkan efek :hover untuk memberikan umpan balik visual saat tombol di kursor.
+    Responsivitas: Menggunakan media queries (@media) untuk menyesuaikan tampilan kalkulator pada ukuran layar yang berbeda (misalnya, membuat tombol lebih besar pada layar sentuh).
+
+5.3. Logika JavaScript (script/script.js)
+
+File script/script.js adalah otak dari kalkulator. Ini menangani interaksi pengguna dan perhitungan.
+
+    Mendapatkan Elemen DOM:
+        Mengakses elemen tampilan (.display) dan semua tombol (button) menggunakan document.querySelector dan document.querySelectorAll.
+
+    Variabel Status:
+        currentInput: String yang menyimpan angka atau operasi yang sedang dimasukkan pengguna.
+        firstOperand: Angka pertama dalam operasi.
+        operator: Operator yang dipilih (+, -, *, /).
+        waitingForSecondOperand: Boolean yang menunjukkan apakah kalkulator sedang menunggu angka kedua.
+
+    Fungsi Penanganan Tombol:
+        appendNumber(number): Menambahkan angka ke currentInput. Mencegah penambahan titik desimal ganda.
+        chooseOperator(op): Menetapkan operator. Jika currentInput ada, ia akan ditetapkan sebagai firstOperand.
+        calculate(): Melakukan perhitungan berdasarkan firstOperand, operator, dan currentInput (sebagai secondOperand). Hasilnya diperbarui di currentInput.
+        clearDisplay(): Mereset semua variabel status dan mengosongkan tampilan.
+        deleteLastChar(): Menghapus karakter terakhir dari currentInput.
+
+    Event Listeners:
+        Melakukan iterasi pada setiap tombol.
+        Menambahkan eventListener 'click' ke setiap tombol.
+        Di dalam eventListener, periksa classList tombol untuk menentukan jenis tombol (number, operator, clear, equals, dll.) dan panggil fungsi yang sesuai.
+
+    Memperbarui Tampilan:
+        Setelah setiap operasi atau input, display.value diperbarui dengan nilai currentInput yang terbaru.
+
+6. Pengembangan dan Perbaikan
+
+    Penanganan Error: Menambahkan penanganan error untuk kasus seperti pembagian dengan nol.
+    Fitur Lanjutan: Menambahkan fungsi ilmiah (akar kuadrat, pangkat, dll.), memori, atau riwayat perhitungan.
+    Desain Responsif: Memperbaiki atau menyempurnakan responsivitas agar bekerja sempurna di berbagai perangkat.
+    Pengujian: Melakukan pengujian menyeluruh untuk memastikan semua fungsi bekerja dengan benar.
+
+Dengan struktur direktori yang lebih rapi ini, proyek Anda akan lebih terorganisir dan mudah dikelola seiring pertumbuhannya. Apakah ada bagian lain dari dokumentasi yang ingin Anda kembangkan atau sesuaikan?
+
+kode saya seperti ini tolong sesuaikan documentasinya <!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Document</title>
+
+<link rel="stylesheet" href="./style/style.css" />
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="textarea">
+
+<textarea readonly name="textarea" id="textarea"></textarea>
+
+</div>
+
+<div class="number">
+
+<div class="row">
+
+<button value="7">7</button><button value="8">8</button
+
+><button value="9">9</button><button value="+">+</button>
+
+</div>
+
+<div class="row">
+
+<button value="4">4</button><button value="5">5</button
+
+><button value="6">6</button><button value="-">-</button>
+
+</div>
+
+<div class="row">
+
+<button value="1">1</button><button value="2">2</button
+
+><button value="3">3</button><button value="X">X</button>
+
+</div>
+
+<div class="row">
+
+<button value="=" id="sum">=</button><button value="C">C</button
+
+><button value="<="><=</button><button value="/">/</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="./script/script.js"></script>
+
+</body>
+
+</html>
+
+* {
+
+margin: 0;
+
+padding: 0;
+
+}
+
+body {
+
+background-color: #3d3d3d;
+
+display: flex;
+
+justify-content: center;
+
+align-items: center;
+
+height: 100vh;
+
+}
+
+button {
+
+margin-left: 10px;
+
+width: 80px;
+
+height: 80px;
+
+border: none;
+
+background-color: orange;
+
+border-radius: 50%;
+
+color: white;
+
+font-weight: bold;
+
+}
+
+div.container {
+
+background-color: #292929;
+
+padding: 20px;
+
+border-radius: 20px;
+
+display: flex;
+
+flex-direction: column;
+
+width: 400px;
+
+height: 700px;
+
+gap: 50px;
+
+}
+
+div.container > div.textarea > textarea {
+
+background-color: rgb(19, 19, 19);
+
+border: none;
+
+border-radius: 10px;
+
+width: 100%;
+
+height: 250px;
+
+font-weight: bold;
+
+font-size: 4em;
+
+color: white;
+
+}
+
+div.container > div.number {
+
+display: flex;
+
+flex-direction: column;
+
+gap: 20px 0;
+
+justify-content: center;
+
+align-items: center;
+
+}
+
+
+const textarea = document.getElementById("textarea");
+
+const tombol = document.querySelectorAll("button");
+
+let ekspresi = "";
+
+tombol.forEach((button) => {
+
+button.addEventListener("click", () => {
+
+let value = button.textContent;
+
+if (value == "=") {
+
+try {
+
+let fixedEkspresi = ekspresi.replace("x", "*").replace("X", "*");
+
+const hasil = eval(fixedEkspresi);
+
+textarea.value = hasil;
+
+ekspresi = String(hasil);
+
+} catch (error) {
+
+textarea.value = "Error";
+
+ekspresi = "";
+
+}
+
+} else if (value == "C") {
+
+ekspresi = "";
+
+textarea.value = ekspresi;
+
+} else if (value == "<=") {
+
+ekspresi = ekspresi.slice(0, -1);
+
+textarea.value = ekspresi;
+
+} else {
+
+ekspresi += value;
+
+textarea.value = ekspresi;
+
+}
+
+});
+
+});
+
+Tentu, saya akan sesuaikan dokumentasi Anda dengan kode HTML, CSS, dan JavaScript yang Anda berikan. Perubahan utama akan ada pada bagian struktur HTML, styling CSS, dan logika JavaScript agar sesuai dengan implementasi Anda.
+Dokumentasi Pembuatan Aplikasi Web Kalkulator
+1. Pendahuluan
+
+Dokumen ini menjelaskan proses pembuatan aplikasi web kalkulator sederhana. Aplikasi ini dirancang untuk melakukan operasi aritmatika dasar (penjumlahan, pengurangan, perkalian, pembagian) melalui antarmuka berbasis web.
+2. Tujuan Aplikasi
+
+    Menyediakan kalkulator fungsional yang dapat diakses melalui browser web.
+    Memahami dasar-dasar pengembangan web (HTML, CSS, JavaScript) dalam konteks proyek praktis.
+    Membangun antarmuka pengguna yang intuitif.
+
+3. Teknologi yang Digunakan
+
+    HTML5: Untuk struktur dasar dan elemen antarmuka (tombol, tampilan hasil).
+    CSS3: Untuk styling dan layout aplikasi (membuat tampilan menarik).
+    JavaScript (Vanilla JS): Untuk logika inti kalkulator (menangani input, melakukan perhitungan, memperbarui tampilan).
+
+4. Struktur File Proyek
+
+Berikut adalah struktur file yang direkomendasikan untuk proyek ini, dengan nama root proyek calcProjek dan file CSS serta JavaScript dipisahkan ke dalam folder masing-masing:
+
+calcProjek/
+├── index.html
+├── style/
+│   └── style.css
+└── script/
+    └── script.js
+
+5. Proses Pembuatan
+5.1. Struktur HTML (index.html)
+
+File index.html adalah kerangka utama aplikasi. Ini berisi elemen-elemen berikut:
+
+    <!DOCTYPE html>: Deklarasi tipe dokumen HTML5.
+    <html lang="en">: Elemen root dengan bahasa Inggris.
+    <head>: Berisi metadata seperti charset (<meta charset="UTF-8" />), pengaturan viewport untuk responsivitas (<meta name="viewport" content="width=device-width, initial-scale=1.0" />), judul halaman (<title>Document</title>), dan tautan ke file CSS (<link rel="stylesheet" href="./style/style.css" />).
+    <body>: Berisi konten yang terlihat oleh pengguna.
+        <div class="container">: Wadah utama untuk seluruh elemen kalkulator.
+            <div class="textarea">: Wadah untuk area tampilan hasil.
+                <textarea readonly name="textarea" id="textarea"></textarea>: Bidang teks untuk menampilkan angka dan hasil. Atribut readonly mencegah pengguna mengetik langsung.
+            <div class="number">: Wadah untuk semua tombol kalkulator, disusun dalam beberapa baris (<div class="row">).
+                Tombol Angka (7-9, 4-6, 1-3): Masing-masing memiliki atribut value sesuai angkanya.
+                Tombol Operator (+, -, X, /): Masing-masing memiliki atribut value sesuai operatornya. X digunakan untuk perkalian, yang kemudian akan diubah menjadi * dalam JavaScript.
+                Tombol Khusus (=, C, &lt;=):
+                    =: Untuk menghitung hasil, dengan id="sum".
+                    C: Untuk menghapus semua input (Clear).
+                    <=: Untuk menghapus karakter terakhir.
+        <script src="./script/script.js"></script>: Tautan ke file JavaScript di akhir <body> agar elemen HTML dimuat terlebih dahulu.
+
+5.2. Styling CSS (style/style.css)
+
+File style/style.css bertanggung jawab untuk mempercantik tampilan kalkulator Anda. Poin-poin penting dalam styling:
+
+    Reset CSS: Mengatur ulang margin dan padding ke 0 pada elemen universal (*).
+    body: Mengatur latar belakang menjadi #3d3d3d, dan menggunakan Flexbox (display: flex; justify-content: center; align-items: center; height: 100vh;) untuk memposisikan kalkulator di tengah halaman secara vertikal dan horizontal.
+    button: Styling dasar untuk semua tombol, termasuk margin-left, width, height, border: none;, background-color: orange;, border-radius: 50%;, color: white;, dan font-weight: bold;.
+    div.container: Styling untuk wadah utama kalkulator, mengatur background-color, padding, border-radius, display: flex;, flex-direction: column;, width, height, dan gap antar elemen.
+    div.container > div.textarea > textarea: Styling khusus untuk area tampilan hasil, mengatur background-color, border: none;, border-radius, width, height, font-weight, font-size, dan color.
+    div.container > div.number: Styling untuk wadah tombol, menggunakan Flexbox (display: flex; flex-direction: column; gap: 20px 0; justify-content: center; align-items: center;) untuk mengatur tata letak baris tombol.
+
+5.3. Logika JavaScript (script/script.js)
+
+File script/script.js adalah otak dari kalkulator. Ini menangani interaksi pengguna dan perhitungan.
+
+    Mendapatkan Elemen DOM:
+        Mengakses elemen textarea dengan id="textarea" menggunakan document.getElementById("textarea").
+        Mengakses semua tombol (<button>) menggunakan document.querySelectorAll("button").
+
+    Variabel Status:
+        ekspresi: String yang menyimpan ekspresi matematika yang sedang dibangun oleh pengguna.
+
+    Event Listeners:
+        Melakukan iterasi pada setiap tombol yang ditemukan menggunakan forEach.
+        Menambahkan eventListener 'click' ke setiap tombol.
+        Di dalam eventListener, nilai teks dari tombol (button.textContent) diambil.
+        Logika Penanganan Input:
+            Jika tombol yang diklik adalah =, maka:
+                Ekspresi ekspresi akan diubah (replace("x", "*").replace("X", "*")) untuk memastikan operasi perkalian menggunakan simbol * yang dikenali oleh eval().
+                Fungsi eval() digunakan untuk menghitung hasil ekspresi.
+                Hasilnya ditampilkan di textarea.value.
+                Variabel ekspresi diperbarui dengan hasil perhitungan agar dapat digunakan untuk perhitungan selanjutnya.
+                Penanganan Error: Menggunakan blok try-catch untuk menangani error (misalnya, ekspresi tidak valid atau pembagian dengan nol) dan menampilkan "Error" di textarea.
+            Jika tombol yang diklik adalah C, maka:
+                Variabel ekspresi dikosongkan.
+                textarea.value diatur menjadi kosong.
+            Jika tombol yang diklik adalah <=, maka:
+                Karakter terakhir dari ekspresi dihapus menggunakan ekspresi.slice(0, -1).
+                textarea.value diperbarui dengan ekspresi yang telah diperbarui.
+            Untuk tombol lainnya (angka dan operator selain =), nilai tombol ditambahkan ke ekspresi dan ditampilkan di textarea.value.
+
+6. Pengembangan dan Perbaikan
+
+    Penanganan Error yang Lebih Baik: Implementasi try-catch sudah ada, namun bisa ditingkatkan untuk memberikan pesan error yang lebih spesifik kepada pengguna.
+    Validasi Input: Mencegah input yang tidak valid (misalnya, dua operator berturut-turut atau lebih dari satu titik desimal dalam satu angka).
+    Prioritas Operator: Saat ini, eval() menangani prioritas operator secara otomatis, namun untuk kalkulator yang lebih kompleks atau untuk menghindari eval(), Anda mungkin perlu mengimplementasikan algoritma parsing ekspresi (misalnya, Shunting-yard algorithm).
+    Fitur Lanjutan: Menambahkan fungsi ilmiah (akar kuadrat, pangkat, dll.), memori, atau riwayat perhitungan.
+    Responsivitas: Memperbaiki atau menyempurnakan responsivitas agar bekerja sempurna di berbagai perangkat, terutama untuk ukuran tombol dan font pada layar kecil.
+    Pengujian: Melakukan pengujian menyeluruh untuk memastikan semua fungsi bekerja dengan benar dalam berbagai skenario input.
