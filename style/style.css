@@ -1,7 +1,9 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
+
 body {
   background-color: #3d3d3d;
   display: flex;
@@ -9,61 +11,78 @@ body {
   align-items: center;
   height: 100vh;
 }
+
 button {
-  margin-left: 10px;
-  width: 80px;
-  height: 80px;
+  margin: 5px;
+  width: 70px;
+  height: 70px;
   border: none;
   background-color: orange;
   cursor: pointer;
   border-radius: 50%;
   color: white;
   font-weight: bold;
+  font-size: 1.5em;
 }
+
 button#sum {
-  width: 260px;
+  width: 100%;
   border-radius: 5px;
 }
+
 button:active {
   background-color: #ff0404;
 }
+
 div.container {
   background-color: #292929;
   padding: 20px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  width: 400px;
-  height: 850px;
-  gap: 90px;
+  width: 90vw;
+  max-width: 400px;
+  height: 90vh;
+  max-height: 850px;
+  gap: 20px;
 }
+
 div.container > div.textarea > textarea {
   background-color: rgb(19, 19, 19);
   border: none;
   border-radius: 10px;
   width: 100%;
-  height: 250px;
+  height: 200px;
   font-weight: bold;
-  font-size: 4em;
+  font-size: 3em;
   color: white;
   margin-top: 20px;
+  resize: none;
 }
+
 div.container > div.number {
   display: flex;
   flex-direction: column;
-  gap: 20px 0;
+  gap: 10px;
   justify-content: center;
   align-items: center;
 }
+
 @media screen and (max-width: 768px) {
   div.container {
     height: 100vh;
     width: 100vw;
   }
 }
+
 @media screen and (max-width: 480px) {
-  div.container {
-    height: 100vh;
-    width: 100vw;
+  button {
+    width: 60px;
+    height: 60px;
+    font-size: 1.2em;
+  }
+
+  div.container > div.textarea > textarea {
+    font-size: 2.5em;
   }
 }
