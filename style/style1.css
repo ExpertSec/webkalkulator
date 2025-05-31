@@ -61,3 +61,29 @@ div.container > div.number {
   align-items: center;
   flex-direction: column;
 }
+
+@media screen and (max-width: 768px) {
+  div.container {
+    height: 100vh;
+    width: 100vw;
+    border-radius: 0px;
+  }
+}
+@media screen and (max-width: 480px) {
+  button {
+    width: 70px;
+    height: 70px;
+  }
+  button#sum {
+    width: 240px;
+  }
+}
+@media screen and (max-width: 350px) {
+  button {
+    width: 65px;
+    height: 65px;
+  }
+  button#sum {
+    width: 218px;
+  }
+}
