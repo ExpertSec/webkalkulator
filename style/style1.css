@@ -46,7 +46,7 @@ div.container {
   box-shadow: 0;
 }
 div.container > div.textarea > textarea {
-  background-color: #1b1b1b;
+  background-color: #0c0c0c;
   width: 400px;
   height: 200px;
   color: white;
